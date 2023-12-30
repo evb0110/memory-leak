@@ -1,8 +1,11 @@
 <template>
-    <div id="app">
-        <button @click="isShowTest = !isShowTest">
+    <div>
+        <button @click="click">
             {{ isShowTest ? 'Hide' : 'Show' }}
         </button>
+    </div>
+    <div v-if="counter">
+        Component opened {{ counter }} times.
     </div>
     <Test v-if="isShowTest" />
 </template>
@@ -18,7 +21,16 @@ export default {
     data() {
         return {
             isShowTest: false,
+            counter: 0,
         };
+    },
+    methods: {
+        click() {
+            this.isShowTest = !this.isShowTest;
+            if (this.isShowTest) {
+                this.counter++;
+            }
+        },
     },
 };
 </script>
